@@ -138,7 +138,7 @@ leo run finish "{
   owner: aleo1f9rwrqkpng27xmuf630xuup479mcyl6etnzwu74v3329jg06zcxq7wktzl.private,
   bidder: aleo1ashyu96tjwe63u0gtnnv8z5lhapdu4l5pjsl2kha7fv7hvz2eqxs5dz0rg.private,
   amount: 10u64.private,
-  is_winner: false.private,
+  is_winner: true.private,
   _nonce: 7550506099450396963529170486105398877861043700129885431947219994110284082348group.public
 }" || exit
 
