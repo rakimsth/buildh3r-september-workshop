@@ -6,6 +6,10 @@ record Bid:
     amount as u64.private;
     is_winner as boolean.private;
 
+record Prize:
+    owner as address.private;
+    amount as u64.private;
+
 
 function place_bid:
     input r0 as address.private;
@@ -33,3 +37,10 @@ function finish:
     assert.eq self.caller aleo1f9rwrqkpng27xmuf630xuup479mcyl6etnzwu74v3329jg06zcxq7wktzl;
     cast r0.bidder r0.bidder r0.amount true into r1 as Bid.record;
     output r1 as Bid.record;
+
+
+function claim:
+    input r0 as Bid.record;
+    assert.eq r0.is_winner true;
+    cast r0.bidder r0.amount into r1 as Prize.record;
+    output r1 as Prize.record;

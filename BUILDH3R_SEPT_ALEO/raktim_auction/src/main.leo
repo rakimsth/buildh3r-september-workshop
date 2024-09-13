@@ -12,6 +12,14 @@ program raktim_auction.aleo {
         is_winner: bool,
     }
 
+    // A prize awarded to the winning bidder.
+    // - `owner`  : The address of the winning bidder.
+    // - `amount` : The amount of the prize.
+    record Prize {
+        owner: address,
+        amount: u64,
+    }
+
     // Returns a new bid.
     // - `bidder` : The address of the account that placed the bid.
     // - `amount` : The amount of the bid.
@@ -60,6 +68,19 @@ program raktim_auction.aleo {
             bidder: bid.bidder,
             amount: bid.amount,
             is_winner: true,
+        };
+    }
+
+    // Claim the prize with the winning bid.
+    // - `bid` : The winning bid.
+    // Requires that `is_winner` is true for the bid to claim the prize.
+    transition claim(bid: Bid) -> Prize {
+        // Ensure the bid is a winning bid.
+        assert_eq(bid.is_winner, true);
+        // Return the prize to the winning bidder.
+        return Prize {
+            owner: bid.bidder,
+            amount: bid.amount,
         };
     }
 }
